@@ -2,7 +2,7 @@ import {Mapper} from '../../Core/Base/mapper';
 import {ShopWebEntity} from '../Entities/Shop-web-entity';
 import {ShopModel} from '../../Core/Domain/Shop.model';
 
-export class ShopWebRepositoryMapper extends Mapper<ShopWebEntity, ShopModel, string> {
+export class ShopWebRepositoryMapper extends Mapper<ShopWebEntity, ShopModel> {
   mapFrom(param: ShopWebEntity): ShopModel {
     return {
       name: param.name,
@@ -13,9 +13,9 @@ export class ShopWebRepositoryMapper extends Mapper<ShopWebEntity, ShopModel, st
     };
   }
 
-  mapTo(param: ShopModel, idShop): ShopWebEntity {
+  mapTo(param: ShopModel): ShopWebEntity {
     return {
-    id:idShop,
+    id:0,
     name: param.name,
     description: param.description,
     logo: param.logo,

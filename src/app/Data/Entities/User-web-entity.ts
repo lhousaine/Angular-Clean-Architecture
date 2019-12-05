@@ -11,5 +11,5 @@ export interface UserWebEntity {
   address: AddressWebEntity;
   likedShops?: Array<ShopWebEntity>;
   dislikedShops?: Array<ShopWebEntity>;
-  role?: RoleWebEntity;
+  roles: Array<RoleWebEntity>;
 }
