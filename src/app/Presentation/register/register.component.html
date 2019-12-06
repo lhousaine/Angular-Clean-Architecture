@@ -1,1 +1,58 @@
-<p>register works!</p>
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Register</mat-card-title>
+    </mat-card-header>
+
+    <form class="example-form" #f="ngForm" (ngSubmit)="onRegister(f.value)">
+       <mat-card-content>
+         <span>Full Name : </span>
+         <div class="example-full-width">
+           <mat-form-field class="space">
+          <input matInput placeholder="firstName" ngModel name="firstName">
+          </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="lastName" ngModel name="lastName">
+        </mat-form-field>
+         </div>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="email" ngModel name="email">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Password" ngModel name="password">
+        </mat-form-field>
+        <span>Address : </span>
+        <div class="example-full-width">
+          <mat-form-field class="space">
+             <input matInput placeholder="ZipCode" ngModel name="zipCode">
+          </mat-form-field>
+
+          <mat-form-field>
+             <input matInput placeholder="AddressLine" ngModel name="addressLine">
+          </mat-form-field>
+        </div>
+        <div class="example-full-width">
+          <mat-form-field class="space">
+             <input matInput placeholder="city" ngModel name="city">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="Country" ngModel name="country">
+          </mat-form-field>
+        </div>
+         <span> Coordinates :  </span>
+        <div class="example-full-width">
+        <mat-form-field class="space">
+          <input matInput placeholder="latitude" type="number" ngModel name="latitude">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="longitude" type="number" ngModel name="longitude">
+        </mat-form-field>
+        </div>
+      </mat-card-content>
+
+      <button mat-stroked-button color="accent" type="submit" class="btn-block">Register</button>
+    </form>
+  </mat-card>
+</div>

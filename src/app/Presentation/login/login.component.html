@@ -1,1 +1,19 @@
-<p>login works!</p>
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Log in</mat-card-title>
+    </mat-card-header>
+    <form class="example-form" #f="ngForm" (ngSubmit)="onLogin(f.value)">
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Username" ngModel name="email">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput type="password" placeholder="Password"  ngModel name="password">
+        </mat-form-field>
+      </mat-card-content>
+      <button mat-stroked-button color="accent" type="submit" class="btn-block">Log in</button>
+    </form>
+  </mat-card>
+</div>
