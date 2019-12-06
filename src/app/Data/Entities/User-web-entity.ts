@@ -1,4 +1,3 @@
-import {RoleWebEntity} from './Role-web-entity';
 import {ShopWebEntity} from './Shop-web-entity';
 import {AddressWebEntity} from './Address-web-entity';
 
@@ -11,5 +10,4 @@ export interface UserWebEntity {
   address: AddressWebEntity;
   likedShops?: Array<ShopWebEntity>;
   dislikedShops?: Array<ShopWebEntity>;
-  roles: Array<RoleWebEntity>;
 }
