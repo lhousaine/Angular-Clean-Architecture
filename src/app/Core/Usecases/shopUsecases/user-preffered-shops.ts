@@ -7,11 +7,12 @@ import {ShopRepository} from '../../Repositories/shop.repository';
 @Injectable({
   providedIn: 'root'
 })
-export class UserPrefferedShops implements UseCase<number, ShopModel> {
+export class UserPrefferedShops implements UseCase<string, ShopModel> {
   constructor(private shopRepository:ShopRepository){
 
   }
-  execute(params: number): Observable<ShopModel> {
+
+  execute(params: string): Observable<ShopModel> {
     return this.shopRepository.getPreferredShopsToUser(params);
   }
 

@@ -10,14 +10,15 @@ export class UserWebRepositoryMapper extends Mapper<UserWebEntity, UserModel> {
   mapFrom(param: UserWebEntity): UserModel {
     var likedShops:ShopModel[]= [];
     var dislikedShops:ShopModel[]=[];
+    if(param.likedShops)
     param.likedShops.forEach(value=>{
       likedShops.push(this.shopMapper.mapFrom(value));
     });
-
-    param.dislikedShops.forEach(value => {
-      dislikedShops.push(this.shopMapper.mapFrom(value));
-    });
-
+    if(param.dislikedShops) {
+      param.dislikedShops.forEach(value => {
+        dislikedShops.push(this.shopMapper.mapFrom(value));
+      });
+    }
     return {
     email: param.email,
     firstName: param.firstName,
@@ -32,11 +33,12 @@ export class UserWebRepositoryMapper extends Mapper<UserWebEntity, UserModel> {
   mapTo(param: UserModel): UserWebEntity {
     var likedShops:ShopWebEntity[]= [];
     var dislikedShops:ShopWebEntity[]=[];
-
+    if(param.likedShops)
     param.likedShops.forEach(value=>{
       likedShops.push(this.shopMapper.mapTo(value));
     });
 
+    if (param.dislikedShops)
     param.dislikedShops.forEach(value => {
       dislikedShops.push(this.shopMapper.mapTo(value))
     });

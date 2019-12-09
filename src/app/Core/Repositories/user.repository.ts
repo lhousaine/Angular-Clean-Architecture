@@ -3,9 +3,9 @@ import {Observable} from 'rxjs';
 import {ShopModel} from '../Domain/Shop.model';
 
 export abstract class UserRepository {
-    abstract loginUser(data);
-    abstract registerUser(user:Object): Observable<UserModel>;
-    abstract dislikeNewShop(idUser: number, idShop:number): Observable<ShopModel>;
-    abstract likeNewShop(idUser: number, idShop:number): Observable<ShopModel>;
-    abstract removeLikedShop(idUser: number, idShop:number): Observable<ShopModel>;
+    abstract loginUser(data:any):Observable<any>;
+    abstract registerUser(user:any): Observable<UserModel>;
+    abstract dislikeNewShop(email: string, shopName:string): Observable<ShopModel>;
+    abstract likeNewShop(email: string, shopName:string): Observable<ShopModel>;
+    abstract removeLikedShop(email: string, shopName:string): Observable<ShopModel>;
 }

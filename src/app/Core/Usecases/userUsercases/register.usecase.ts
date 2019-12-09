@@ -8,13 +8,13 @@ import {Injectable} from '@angular/core';
   providedIn: 'root'
 })
 
-export class RegisterUsecase implements UseCase<Object,UserModel>{
+export class RegisterUsecase implements UseCase<any,UserModel>{
   constructor(private userRepository:UserRepository){
 
   }
 
-  execute(params: Object): Observable<UserModel> {
-    return this.userRepository.registerUser(Object);
+  execute(params: any): Observable<UserModel> {
+    return this.userRepository.registerUser(params);
   }
 
 }

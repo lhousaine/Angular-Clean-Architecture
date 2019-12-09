@@ -4,9 +4,15 @@ import {ShopModel} from '../../../Core/Domain/Shop.model';
 import {CoordinatesModel} from '../../../Core/Domain/Coordinates.model';
 import {flatMap, map} from 'rxjs/operators';
 import {ShopWebRepositoryMapper} from '../../repositories-mappers/shop-web-repository-mapper';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { ShopWebEntity } from '../../Entities/Shop-web-entity';
 import {Injectable} from '@angular/core';
+
+const httpsOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'Application/json'
+  })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +20,7 @@ import {Injectable} from '@angular/core';
 export class ShopWebRepository extends ShopRepository {
   shopMapper = new ShopWebRepositoryMapper();
   API_SHOPS_URL="http://localhost:8080/shops";
+  API_USERS_URL="http://localhost:8080/users";
 
   constructor(private http: HttpClient) {
     super();
@@ -26,21 +33,28 @@ export class ShopWebRepository extends ShopRepository {
       .pipe(map(this.shopMapper.mapFrom));
   }
 
-  getPreferredShopsToUser(idUser: number): Observable<ShopModel>  {
+  getPreferredShopsToUser(email:string): Observable<ShopModel>  {
     return  this.http
-      .get<ShopWebEntity[]>(this.API_SHOPS_URL+'/preferred-shops/${idUser}')
+      .get<ShopWebEntity[]>(
+        this.API_USERS_URL+'/preferred-shops/',
+        httpsOptions)
       .pipe(flatMap((item) => item))
       .pipe(map(this.shopMapper.mapFrom));
   }
 
   getShopById(id: number): Observable<ShopModel> {
     return this.http
-      .get<ShopWebEntity>(this.API_SHOPS_URL+'${id}')
+      .get<ShopWebEntity>(
+        this.API_SHOPS_URL+'${id}',
+        httpsOptions)
       .pipe(map(this.shopMapper.mapFrom));
   }
 
   getShopsNearbyToCoordinates(coordinates: CoordinatesModel): Observable<ShopModel> {
-    return this.http.post<ShopWebEntity[]>(this.API_SHOPS_URL+'/nearby-shops', {coordinates})
+    return this.http.post<ShopWebEntity[]>(
+      this.API_SHOPS_URL+'/nearby-shops',
+      {coordinates},
+        httpsOptions)
       .pipe(flatMap((item) => item))
       .pipe(map(this.shopMapper.mapFrom));
   }

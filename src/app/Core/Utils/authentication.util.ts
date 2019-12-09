@@ -15,7 +15,6 @@ export class AuthenticationUtil {
     this.parseJWT();
   }
 
-
   parseJWT() {
     let jwtHelper=new JwtHelperService();
     let objJWT=jwtHelper.decodeToken(this.jwt);

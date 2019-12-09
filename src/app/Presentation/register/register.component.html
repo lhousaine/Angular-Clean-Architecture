@@ -4,55 +4,56 @@
       <mat-card-title>Register</mat-card-title>
     </mat-card-header>
 
-    <form class="example-form" #f="ngForm" (ngSubmit)="onRegister(f.value)">
+    <form class="example-form" [formGroup]="RegisterForm" (ngSubmit)="onRegister()">
        <mat-card-content>
          <span>Full Name : </span>
          <div class="example-full-width">
            <mat-form-field class="space">
-          <input matInput placeholder="firstName" ngModel name="firstName">
+          <input matInput placeholder="firstName" formControlName="firstName">
           </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="lastName" ngModel name="lastName">
+          <input matInput placeholder="lastName" formControlName="lastName">
         </mat-form-field>
          </div>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="email" ngModel name="email">
+          <input matInput placeholder="email" formControlName="email">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Password" ngModel name="password">
+          <input matInput type="password" placeholder="Password" formControlName="password">
         </mat-form-field>
         <span>Address : </span>
+         <div formGroupName="address">
         <div class="example-full-width">
           <mat-form-field class="space">
-             <input matInput placeholder="ZipCode" ngModel name="zipCode">
+             <input matInput placeholder="ZipCode" formControlName="zipCode">
           </mat-form-field>
 
           <mat-form-field>
-             <input matInput placeholder="AddressLine" ngModel name="addressLine">
+             <input matInput placeholder="AddressLine" formControlName="addressLine">
           </mat-form-field>
         </div>
         <div class="example-full-width">
           <mat-form-field class="space">
-             <input matInput placeholder="city" ngModel name="city">
+             <input matInput placeholder="city" formControlName="city">
           </mat-form-field>
 
           <mat-form-field>
-            <input matInput placeholder="Country" ngModel name="country">
+            <input matInput placeholder="Country" formControlName="country">
           </mat-form-field>
         </div>
+         </div>
          <span> Coordinates :  </span>
-        <div class="example-full-width">
+        <div class="example-full-width" formGroupName="coordinates">
         <mat-form-field class="space">
-          <input matInput placeholder="latitude" type="number" ngModel name="latitude">
+          <input matInput placeholder="latitude" type="number"  min="-90" max="90" formControlName="latitude">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="longitude" type="number" ngModel name="longitude">
+          <input matInput placeholder="longitude" type="number"  min="-90" max="90" formControlName="longitude">
         </mat-form-field>
         </div>
       </mat-card-content>
-
-      <button mat-stroked-button color="accent" type="submit" class="btn-block">Register</button>
+      <input mat-stroked-button color="accent" type="submit" name="submit" value="Register" class="btn-block">
     </form>
   </mat-card>
 </div>

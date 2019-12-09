@@ -3,6 +3,8 @@ import {LoginUsecase} from '../../Core/Usecases/userUsercases/login.usecase';
 import {UserModel} from '../../Core/Domain/User.model';
 import {AuthenticationUtil} from '../../Core/Utils/authentication.util';
 import {Router} from '@angular/router';
+import {NgForm} from '@angular/forms';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -17,16 +19,15 @@ export class LoginComponent implements OnInit {
 
   }
 
-  onLogin(value){
-    console.log(value);
-    this.loginUser.execute(value)
-      .subscribe(response=>{
-        let jwt=response.headers.get('Authorization');
-        console.log(jwt);
-        this.authUtil.saveToken(jwt);
-        this.router.navigateByUrl("/");
-      },err => {
-        console.log(err);
-      })
+  onLogin(data){
+    console.log(data);
+   this.loginUser.execute(data).subscribe(resp=>{
+     let jwt=resp.headers.get('Authorization');
+     console.log(jwt);
+     this.authUtil.saveToken(jwt);
+     this.router.navigateByUrl("/");
+     },err => {
+     console.log(err);
+   });
   }
 }
