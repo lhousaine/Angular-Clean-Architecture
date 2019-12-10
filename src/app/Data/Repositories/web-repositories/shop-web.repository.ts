@@ -7,6 +7,7 @@ import {ShopWebRepositoryMapper} from '../../repositories-mappers/shop-web-repos
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { ShopWebEntity } from '../../Entities/Shop-web-entity';
 import {Injectable} from '@angular/core';
+import {AuthenticationUtil} from '../../../Core/Utils/authentication.util';
 
 const httpsOptions = {
   headers: new HttpHeaders({
@@ -21,8 +22,12 @@ export class ShopWebRepository extends ShopRepository {
   shopMapper = new ShopWebRepositoryMapper();
   API_SHOPS_URL="http://localhost:8080/shops";
   API_USERS_URL="http://localhost:8080/users";
-
-  constructor(private http: HttpClient) {
+  httpsOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'Application/json'
+    })
+  };
+  constructor(private http: HttpClient,private authUtil:AuthenticationUtil) {
     super();
   }
 

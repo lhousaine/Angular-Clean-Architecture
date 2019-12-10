@@ -9,12 +9,7 @@ import {map} from 'rxjs/operators';
 import {ShopModel} from '../../../Core/Domain/Shop.model';
 import {ShopWebEntity} from '../../Entities/Shop-web-entity';
 import {ShopWebRepositoryMapper} from '../../repositories-mappers/shop-web-repository-mapper';
-
-const httpsOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'Application/json'
-  })
-};
+import {AuthenticationUtil} from '../../../Core/Utils/authentication.util';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +19,12 @@ export class UserWebRepository extends UserRepository {
    shopMapper = new ShopWebRepositoryMapper();
    API_USERS_URL="http://localhost:8085/users";
    API_LOGIN_URL="http://localhost:8085/login";
-  constructor(private http: HttpClient) {
+  httpsOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'Application/json'
+    })
+  };
+  constructor(private http: HttpClient,private authUtil:AuthenticationUtil) {
     super();
   }
 
@@ -38,7 +38,16 @@ export class UserWebRepository extends UserRepository {
     return this.http.post<UserWebEntity>(
       this.API_USERS_URL+'/register',
        user,
-      httpsOptions)
+      this.httpsOptions)
+      .pipe(map(this.userMapper.mapFrom));
+  }
+
+
+  getUserEmail(email: string): Observable<UserModel> {
+    return this.http.post<UserWebEntity>(
+      this.API_USERS_URL+'/user',
+      {"email":email},
+      this.httpsOptions)
       .pipe(map(this.userMapper.mapFrom));
   }
 
@@ -46,7 +55,7 @@ export class UserWebRepository extends UserRepository {
     return this.http.post<ShopWebEntity>(
       this.API_USERS_URL+'/dislike-shop',
       {"email":email, "shopName":shopName},
-       httpsOptions)
+       this.httpsOptions)
       .pipe(map(this.shopMapper.mapFrom));
   }
 
@@ -54,7 +63,7 @@ export class UserWebRepository extends UserRepository {
     return this.http.post<ShopWebEntity>(
       this.API_USERS_URL+'/preferred-shops/remove',
       {"email":email, "shopName":shopName},
-         httpsOptions)
+         this.httpsOptions)
       .pipe(map(this.shopMapper.mapFrom));
   }
 
@@ -62,7 +71,8 @@ export class UserWebRepository extends UserRepository {
     return this.http.post<ShopWebEntity>(
       this.API_USERS_URL+'/like-shop',
       {"email":email, "shopName":shopName},
-      httpsOptions)
+      this.httpsOptions)
       .pipe(map(this.shopMapper.mapFrom));
   }
+
 }

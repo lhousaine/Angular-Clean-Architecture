@@ -11,8 +11,9 @@ import {UserRepository} from './Core/Repositories/user.repository';
 import {UserWebRepository} from './Data/Repositories/web-repositories/user-web-repository';
 import {ShopRepository} from './Core/Repositories/shop.repository';
 import {ShopWebRepository} from './Data/Repositories/web-repositories/shop-web.repository';
-import {UserMockRepository} from './Data/Repositories/mock-repositories/user-mock.repository';
-import {ShopMockRepository} from './Data/Repositories/mock-repositories/shop-mock.repository';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import { JwtInterceptorUtil} from './Core/Utils/JwtInterceptor.util';
+import {ErrorInterceptorUtil} from './Core/Utils/error.interceptor.util';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,9 @@ import {ShopMockRepository} from './Data/Repositories/mock-repositories/shop-moc
   ],
   providers: [
     {provide: UserRepository,useClass:UserWebRepository},
-    {provide: ShopRepository,useClass:ShopWebRepository}
+    {provide: ShopRepository,useClass:ShopWebRepository},
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorUtil, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorUtil, multi: true },
     ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

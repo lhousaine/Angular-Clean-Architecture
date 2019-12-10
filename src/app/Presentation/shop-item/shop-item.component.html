@@ -10,8 +10,12 @@
       {{shop.description}}
     </p>
   </mat-card-content>
-  <mat-card-actions>
-    <button mat-button (click)="likeShop(shop.name)">LIKE</button>
-    <button mat-button (click)="dislikeShop(shop.name)">DISLIKE</button>
+  <mat-card-actions *ngIf="shopPage==='nearby'">
+    <button mat-button (click)="likeShop(shop.name)">Like</button>
+    <button mat-button (click)="dislikeShop(shop.name)">Dislike</button>
   </mat-card-actions>
+  <mat-card-actions *ngIf="shopPage==='preferred'">
+    <button mat-button (click)="removeLikedShop(shop.name)">Remove</button>
+  </mat-card-actions>
+
 </mat-card>

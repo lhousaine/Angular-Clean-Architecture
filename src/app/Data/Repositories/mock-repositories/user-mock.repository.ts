@@ -4,7 +4,7 @@ import {from, Observable, pipe} from 'rxjs';
 import {ShopModel} from '../../../Core/Domain/Shop.model';
 import {UserModel} from '../../../Core/Domain/User.model';
 import {UserWebRepositoryMapper} from '../../repositories-mappers/user-web-repository-mapper';
-import {SHOPS, TOKEN1, TOKEN2, USERS} from './fixturesData';
+import {SHOPS, USERS} from './fixturesData';
 import {filter, map} from 'rxjs/operators';
 import {UserWebEntity} from '../../Entities/User-web-entity';
 import {ShopWebEntity} from '../../Entities/Shop-web-entity';
@@ -75,5 +75,11 @@ export class UserMockRepository extends UserRepository{
     return from(this.shops)
       .pipe(filter((shop: ShopWebEntity) => shop.name === shopName))
        .pipe(map(this.shopMapper.mapFrom));
+  }
+
+  getUserEmail(email: string): Observable<UserModel> {
+    return from(this.users)
+      .pipe(filter((data:UserWebEntity) => data.email===data.email)).
+      pipe(map(this.userMapper.mapFrom));
   }
 }

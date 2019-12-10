@@ -1,0 +1,13 @@
+<mat-toolbar color="primary" class="app-header">
+  <div>
+    <a routerLink="nearby-shops" target="_blank" class="positronx">Nearby Shops</a>
+    <a routerLink="preferred-shops" target="_blank" class="positronx">Preferred Shops</a>
+  </div>
+  <span class="nav-tool-items">
+    <a class="btn" *ngIf="isAuthenticated()" (click)="logOut()">Logout</a>
+    <a *ngIf="!isAuthenticated()" routerLink="/login">Login</a>
+    <a *ngIf="!isAuthenticated()" mat-button mat-raised-button routerLink="/register" routerLinkActive="active">Register</a>
+  </span>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

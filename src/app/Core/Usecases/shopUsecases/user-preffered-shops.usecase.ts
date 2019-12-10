@@ -7,7 +7,7 @@ import {ShopRepository} from '../../Repositories/shop.repository';
 @Injectable({
   providedIn: 'root'
 })
-export class UserPrefferedShops implements UseCase<string, ShopModel> {
+export class UserPrefferedShopsUsecase implements UseCase<string, ShopModel> {
   constructor(private shopRepository:ShopRepository){
 
   }
