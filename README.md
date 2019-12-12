@@ -52,7 +52,7 @@ All work in the project is done in the App Directory.
    **angular-material.module.ts** declare all angular/Material modules</br>
    **presentation.module.ts** declare all modules used in this layer Other than angular/material modules.</br>
 
-####some useful commands used to work with this project .
+#### some useful commands used to work with this project .</br>
 after cloning this, you should run the command **npm install** to install all modules used in this project.</br>
 ## Development server
 
