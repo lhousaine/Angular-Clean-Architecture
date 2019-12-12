@@ -4,7 +4,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {RegisterComponent} from './Presentation/register/register.component';
 import {LoginComponent} from './Presentation/login/login.component';
 import {NearbyShopsComponent} from './Presentation/nearby-shops/nearby-shops.component';
-import {PrefferedShopsComponent} from './Presentation/preffered-shops/preffered-shops.component';
+import {PrefferedShopsComponent} from './Presentation/preferred-shops/preffered-shops.component';
 import {LayoutComponent} from './Presentation/layout/layout.component';
 
 
