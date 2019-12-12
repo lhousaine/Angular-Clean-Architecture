@@ -32,24 +32,24 @@ All work in the project is done in the App Directory.
 ###### The Main Component created by default
 ## description of all directory Content :
  **Core:** contains all shared inforamtion between Prenstation Layer and Data Layer, also in this directory<br>
-             all abstract contents like repositories for example.
+             all abstract contents like repositories for example.</br>
    **Base :** contains the abstract usecase used to generalize the execution of all usecases, and abstract mapper </br>
-   methods used to convert from Core domain to data entities.
-   **Domain:** this directory contains all data object used by Presentation layer 
-   **Repositories:** contains all abstract methods of user and shop repositories
-   **Usecases:** in this we implement all usecases .
-   **Utils** declare all utils methods like jwtInterceptor and authentication.
-   **core.module.ts** declare all modules used in this layer
+   methods used to convert from Core domain to data entities.</br>
+   **Domain:** this directory contains all data object used by Presentation layer </br>
+   **Repositories:** contains all abstract methods of user and shop repositories</br>
+   **Usecases:** in this we implement all usecases .</br>
+   **Utils** declare all utils methods like jwtInterceptor and authentication.</br>
+   **core.module.ts** declare all modules used in this layer</br>
  ##### Data contains all data manipulating
-   **Entities:** this directory contains all data object used by Data Repositories to connect to rest APi   
-   **Repositories:** implement the core layer .
-      **mock-repositories:** used to test repositories methods with local data
-      **web-repositories:** contains all methods used to connect with rest API
+   **Entities:** this directory contains all data object used by Data Repositories to connect to rest APi</br>
+   **Repositories:** implement the core layer .</br>
+      **mock-repositories:** used to test repositories methods with local data.</br>
+      **web-repositories:** contains all methods used to connect with rest API.</br>
    **repositories-mappers:** implement the Core mapper to convert from core domain object to Data entities,and </br>
-   from Data entities to core domain object.
-   **data.module.ts:** declare all modules used in data layer
- **Presentation** in this directory, I declare all the components of our application
-   **angular-material.module.ts** declare all angular/Material modules
+   from Data entities to core domain object.</br>
+   **data.module.ts:** declare all modules used in data layer</br>
+ **Presentation** in this directory, I declare all the components of our application</br>
+   **angular-material.module.ts** declare all angular/Material modules</br>
    **presentation.module.ts** declare all modules used in this layer Other than angular/material modules.</br>
 
 ####some useful commands used to work with this project .
