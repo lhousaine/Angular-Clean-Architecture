@@ -7,14 +7,14 @@ import {Injectable} from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class DislikeNewShopUsecase implements UseCase<Map<string,string>,ShopModel>{
+export class DislikeNewShopUsecase implements UseCase<any,ShopModel>{
 
   constructor(private userRepository:UserRepository){
 
   }
 
-  execute(params: Map<string,string>): Observable<ShopModel> {
-    return this.userRepository.dislikeNewShop(params.get("email"),params.get("shopName"));
+  execute(params: any): Observable<ShopModel> {
+    return this.userRepository.dislikeNewShop(params);
   }
 
 }

@@ -35,30 +35,30 @@ export class UserMockRepository extends UserRepository{
       pipe(map(this.userMapper.mapFrom));
   }
 
-  dislikeNewShop(email:string,shopName:string): Observable<ShopModel> {
+  dislikeNewShop(data): Observable<ShopModel> {
     let shop:ShopWebEntity;
     let ObshopEnt=from(this.shops)
-      .pipe(filter((shop: ShopWebEntity) => shop.name === shopName));
+      .pipe(filter((shop: ShopWebEntity) => shop.name === data.shopName));
     ObshopEnt.subscribe(data=>{
       shop=data;
     });
     from(this.users)
-      .pipe(filter((user:UserWebEntity) => user.email===email))
+      .pipe(filter((user:UserWebEntity) => user.email===data.email))
       .subscribe(data=>{
         data.dislikedShops.push(shop);
       });
     return ObshopEnt.pipe(map(this.shopMapper.mapFrom));
   }
 
-  likeNewShop(email:string,shopName:string): Observable<ShopModel> {
+  likeNewShop(data:any): Observable<ShopModel> {
     let shop:ShopWebEntity;
     let ObshopEnt=from(this.shops)
-      .pipe(filter((shop: ShopWebEntity) => shop.name === shopName));
+      .pipe(filter((shop: ShopWebEntity) => shop.name === data.shopName));
       ObshopEnt.subscribe(data=>{
         shop=data;
       });
     from(this.users)
-      .pipe(filter((user:UserWebEntity) => user.email===email))
+      .pipe(filter((user:UserWebEntity) => user.email===data.email))
       .subscribe(data=>{
         data.likedShops.push(shop);
       });
@@ -66,14 +66,14 @@ export class UserMockRepository extends UserRepository{
   }
 
 
-  removeLikedShop(email:string,shopName:string): Observable<ShopModel> {
+  removeLikedShop(datas:any): Observable<ShopModel> {
     from(this.users)
-      .pipe(filter((user:UserWebEntity) => user.email===email))
+      .pipe(filter((user:UserWebEntity) => user.email===datas.email))
       .subscribe(data=>{
-        data.likedShops.filter(shop => shop.name !== shopName);
+        data.likedShops.filter(shop => shop.name !== datas.shopName);
       });
     return from(this.shops)
-      .pipe(filter((shop: ShopWebEntity) => shop.name === shopName))
+      .pipe(filter((shop: ShopWebEntity) => shop.name === datas.shopName))
        .pipe(map(this.shopMapper.mapFrom));
   }
 

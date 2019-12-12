@@ -10,7 +10,7 @@ export class ErrorInterceptorUtil implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(catchError(err => {
-      if (err.status === 401) {
+      if (err.status === 401 || err.status===403 || err.status===500) {
         this.authUtil.logOut();
         location.reload(true);
       }

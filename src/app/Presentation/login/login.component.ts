@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
   }
-
   onLogin(data){
     this.authUtil.login(data);
     console.log(data);

@@ -9,6 +9,7 @@ import {filter, map} from 'rxjs/operators';
 import {ShopWebEntity} from '../../Entities/Shop-web-entity';
 import {UserWebEntity} from '../../Entities/User-web-entity';
 import {SHOPS, USERS} from './fixturesData';
+import {UserModel} from '../../../Core/Domain/User.model';
 
 @Injectable({
   providedIn: 'root'
@@ -42,9 +43,9 @@ export class ShopMockRepository extends ShopRepository{
       .pipe(map(this.shopMapper.mapFrom));
   }
 
-  getShopsNearbyToCoordinates(coordinates: CoordinatesModel): Observable<ShopModel> {
+  getShopsNearbyToCoordinates(userModel:UserModel): Observable<ShopModel> {
     return from(this.shops)
-      .pipe(filter((shop: ShopWebEntity) => shop.coordinates === coordinates))
+      .pipe(filter((shop: ShopWebEntity) => shop.coordinates === userModel.coordinates))
       .pipe(map(this.shopMapper.mapFrom));
   }
 

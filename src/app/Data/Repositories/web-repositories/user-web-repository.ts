@@ -24,7 +24,8 @@ export class UserWebRepository extends UserRepository {
       'Content-Type': 'Application/json'
     })
   };
-  constructor(private http: HttpClient,private authUtil:AuthenticationUtil) {
+
+  constructor(private http: HttpClient) {
     super();
   }
 
@@ -42,7 +43,6 @@ export class UserWebRepository extends UserRepository {
       .pipe(map(this.userMapper.mapFrom));
   }
 
-
   getUserEmail(email: string): Observable<UserModel> {
     return this.http.post<UserWebEntity>(
       this.API_USERS_URL+'/user',
@@ -51,28 +51,27 @@ export class UserWebRepository extends UserRepository {
       .pipe(map(this.userMapper.mapFrom));
   }
 
-  dislikeNewShop(email:string,shopName:string): Observable<ShopModel>{
+  dislikeNewShop(datas): Observable<ShopModel>{
     return this.http.post<ShopWebEntity>(
       this.API_USERS_URL+'/dislike-shop',
-      {"email":email, "shopName":shopName},
+      datas,
        this.httpsOptions)
       .pipe(map(this.shopMapper.mapFrom));
   }
 
-  removeLikedShop(email:string,shopName:string): Observable<ShopModel> {
+  removeLikedShop(datas): Observable<ShopModel> {
     return this.http.post<ShopWebEntity>(
       this.API_USERS_URL+'/preferred-shops/remove',
-      {"email":email, "shopName":shopName},
+      datas,
          this.httpsOptions)
       .pipe(map(this.shopMapper.mapFrom));
   }
 
-  likeNewShop(email:string,shopName:string): Observable<ShopModel> {
+  likeNewShop(datas): Observable<ShopModel> {
     return this.http.post<ShopWebEntity>(
       this.API_USERS_URL+'/like-shop',
-      {"email":email, "shopName":shopName},
+      datas,
       this.httpsOptions)
       .pipe(map(this.shopMapper.mapFrom));
   }
-
 }

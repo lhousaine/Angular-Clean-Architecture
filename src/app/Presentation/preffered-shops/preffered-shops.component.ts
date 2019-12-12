@@ -34,9 +34,8 @@ export class PrefferedShopsComponent implements OnInit {
   }
 
   RemoveLikedShop(shopName:string){
-       let data= new Map<string,string>();
-       data.set("email",this.currentUser.email);
-       data.set("shopName",shopName);
+       let data={"email":this.currentUser.email,"shopName":shopName};
+       console.log(data);
       this.removeShopUsecase.execute(data).subscribe(data=>{
         console.log(data);
       },error => {

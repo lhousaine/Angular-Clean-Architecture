@@ -8,13 +8,13 @@ export class JwtInterceptorUtil implements HttpInterceptor {
   constructor(private authUtil:AuthenticationUtil) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log("entre à cette fonction");
-  //  let currentUser = this.authUtil.currentUserValue;
-    //console.log(currentUser);
+    this.authUtil.loadToken();
+    console.log("entre to this block function");
     if (this.authUtil.getJwt){
       request = request.clone({
         setHeaders: {
-          Authorization: `${this.authUtil.getJwt}`
+          'Content-Type': 'application/json',
+          Authorization:'Bearer '+`${this.authUtil.getJwt}`
         }
       });
     }

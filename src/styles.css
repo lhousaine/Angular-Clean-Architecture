@@ -2,8 +2,6 @@
 html,
 body {
   height: 100%;
-  margin: 0;
-  padding: 0;
 }
 
 body {
@@ -14,7 +12,12 @@ body {
   min-height: 100vh;
   font-family: 'Roboto', sans-serif;
 }
-
+.space{
+  margin-right: 20%;
+}
+.top-space{
+  height: 30px;
+}
 .app-header {
   justify-content: space-between;
   position: fixed;
@@ -109,7 +112,4 @@ body {
 
 .login-wrapper .mat-form-field-appearance-legacy .mat-form-field-infix {
   padding: 0.8375em 0;
-}
-.space{
-  margin-right: 20%;
 }

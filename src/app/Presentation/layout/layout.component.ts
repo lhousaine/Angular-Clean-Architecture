@@ -14,11 +14,11 @@ export class LayoutComponent implements OnInit {
   }
   ngOnInit(): void {
     this.authUtil.loadToken();
+    if (this.authUtil.getJwt==null){
+      this.router.navigate(['/login']);
+    }
   }
 
-  isUser(){
-    return this.authUtil.isUser();
-  }
   isAuthenticated(){
     return this.authUtil.isAuthenticated();
   }

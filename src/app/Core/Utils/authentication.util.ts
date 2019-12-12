@@ -30,9 +30,7 @@ export class AuthenticationUtil {
       let jwt=resp.headers.get('Authorization');
       console.log(jwt);
       this.saveToken(jwt);
-      console.log(this.username);
       this.getUserByEmail.execute(this.username).subscribe(userData=> {
-
         this.saveUser(userData);
         this.currentUserSubject.next(userData);
       },error => {
@@ -62,6 +60,7 @@ export class AuthenticationUtil {
   parseJWT() {
     let jwtHelper=new JwtHelperService();
     let objJWT=jwtHelper.decodeToken(this.jwt);
+    console.log(objJWT);
     this.username=objJWT.sub;
     this.roles=objJWT.roles;
   }
@@ -76,16 +75,9 @@ export class AuthenticationUtil {
 
   loadToken() {
     this.jwt=localStorage.getItem('token');
-    this.parseJWT();
-  }
-
-  createRequestHeader(){
-    return  {
-      headers: new HttpHeaders({
-        'Content-Type': 'Application/json',
-        'Authorization':this.getJwt
-      })
-    };
+    if (this.jwt){
+        this.parseJWT();
+    }
   }
 
   logOut() {
